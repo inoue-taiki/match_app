@@ -14,7 +14,8 @@ class CreateKeepsTable extends Migration
     public function up()
     {
         Schema::create('keeps', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
