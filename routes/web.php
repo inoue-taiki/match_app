@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//ログイン・ログアウト・新規登録
+Auth::routes();
+
+//トップページ
+Route::get('top', 'UsersController@index')->name('top.index');
