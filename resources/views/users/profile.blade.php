@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="match_people">
+    <tr>
+        <td>マッチング人数:<a href="{{ route('follow.match') }}">人</a></td>
+        <td>リクエスト人数:<a href="{{ route('follow.follow') }}">人</a></td>
+        <td>リクエストされてる人数:<a href="{{ route('follow.follower') }}">人</a></td>
+    </tr>
+</div>
+
 <div class="profile_table">
   <tr>
     <td><img src="{{ $user->image_path }}"></td>

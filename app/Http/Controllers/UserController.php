@@ -33,4 +33,19 @@ class UserController extends Controller
         return view('/users/profile_update',compact('user'));
     }
 
+    //ユーザー検索
+    public function search(Request $request){
+        $words = $request->input('userwords');
+        $users = User::where('name', 'like', '%'.$words.'%')->get();
+  
+  
+        return view('/users/search',compact('users'));
+      }
+  
+  
+      //相手ユーザー画面
+      public function other(){
+  
+        return view('/users/other');
+      }
 }

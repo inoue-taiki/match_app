@@ -16,6 +16,7 @@
     <td><p>紹介文：<input type="text" name="bio" value='{{ $user->bio }}'></p></td>
   </tr>
 
-  <button><a href="{{route('user.profile_update')}}">プロフィール編集</a></button>
+  <button class="w-100 btn btn-lg btn-primary" type="submit">更新</button>
+  
 </div>
 @endsection

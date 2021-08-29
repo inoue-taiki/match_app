@@ -1,0 +1,29 @@
+@extends('layouts.app')
+
+@section('content')
+
+<!-- 検索ボックス -->
+<div id="search_box">
+  <form action="search" class="searchform">
+    <input type="text" name="userwords" id="userwords" placeholder="キーワード検索" required>
+    <div class="form-example">
+      <input type="submit" value="検索">
+    </div>
+  </form>
+</div>
+
+<!-- 検索結果(条件分岐) -->
+<div class="search_table">
+  <tr>
+    <td>ユーザー画像</td>
+    <td><a href="{{ route('user.other') }}">ユーザー名</a></td>
+    <td><a href="{{ route('user.keep') }}">お気に入り</a></td>
+
+    <!-- 条件分岐で相手の状態を -->
+    <td><button>マッチング中</button></td>
+    <td><button>リクエスト中</button></td>
+    <td><button>リクエスト受け</button></td>
+  </tr>
+</div>
+
+@endsection
