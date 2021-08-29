@@ -15,4 +15,9 @@
 Auth::routes();
 
 //トップページ
-Route::get('top', 'UsersController@index')->name('top.index');
+Route::get('top', 'UserController@index')->name('top.index');
+
+//プロフィール画面
+Route::get('/users/profile', 'UserController@profile')->name('user.profile');
+//プロフィール編集
+Route::get('/users/profile_update', 'UserController@update')->name('user.profile_update');

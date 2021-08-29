@@ -10,7 +10,7 @@ class Keep extends Model
     protected $table = 'keep';
 
     //リレーション
-    public function user()
+    public function users()
     {
         return $this->belongsTo('App\Models\User');
     }

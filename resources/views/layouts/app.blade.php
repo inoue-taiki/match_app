@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Matching APP</title>
+  <title>Matching_app</title>
   <meta name="description" content="">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
