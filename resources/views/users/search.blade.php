@@ -14,6 +14,7 @@
 
 <!-- 検索結果(条件分岐) -->
 @foreach($users as $user)
+@if(isset($user))
 <div class="search_table">
   <tr>
     <td>{{ $user->image_path }}</td>
@@ -27,6 +28,10 @@
   </tr>
 </div>
 
+@else
+<p>検索結果はありません</p>
+@endif
 @endforeach
+
 
 @endsection
