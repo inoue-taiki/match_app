@@ -13,10 +13,11 @@
 </div>
 
 <!-- 検索結果(条件分岐) -->
+@foreach($users as $user)
 <div class="search_table">
   <tr>
-    <td>ユーザー画像</td>
-    <td><a href="{{ route('user.other') }}">ユーザー名</a></td>
+    <td>{{ $user->image_path }}</td>
+    <td><a href="{{ route('user.other') }}">{{ $user->name}}</a></td>
     <td><a href="{{ route('user.keep') }}">お気に入り</a></td>
 
     <!-- 条件分岐で相手の状態を -->
@@ -25,5 +26,7 @@
     <td><button>リクエスト受け</button></td>
   </tr>
 </div>
+
+@endforeach
 
 @endsection

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    //  テーブル名参照
-    protected $table = 'post';
 
     public function users()
     {
