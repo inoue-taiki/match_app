@@ -47,6 +47,16 @@
     @endforeach
   </select>
 
+  <!--<label for="inputPassword" class="visually-hidden">年齢</label>
+  <select class="form-control" name="age">
+    <option selected="">選択する</option>
+    <option value="0">不詳</option>
+    <option value="1">20代</option>
+    <option value="2">30代</option>
+    <option value="3">40代</option>
+    <option value="4">50代</option>
+  </select>-->
+
   <label for="inputPassword" class="visually-hidden">紹介文</label>
   <input type="text" id="bio" name="bio" class="form-control">
 

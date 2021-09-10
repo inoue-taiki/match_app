@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="match_people">
     <tr>
-        <td>マッチング人数:<a href="{{ route('follow.match') }}">人</a></td>
-        <td>リクエスト人数:<a href="{{ route('follow.follow') }}">人</a></td>
-        <td>リクエストされてる人数:<a href="{{ route('follow.follower') }}">人</a></td>
+        <td><a href="{{ route('follow.match') }}">マッチング中</a>:
+        {{count($match_lists)}}人</td>
+        <td><a href="{{ route('follow.follow') }}">リクエスト中</a>:{{count($request_lists)}}人</td>
+        <td><a href="{{ route('follow.follower') }}">リクエスト受け</a>:{{count($requested_lists)}}人</td>
     </tr>
 </div>
 

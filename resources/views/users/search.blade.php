@@ -19,15 +19,19 @@
   <tr>
     <td>{{ $user->image_path }}</td>
     <td><a href="{{ route('user.other') }}">{{ $user->name}}</a></td>
-    <td><a href="{{ route('user.keep') }}">お気に入り</a></td>
+    <td><a href="{{ route('keep.add', ['id' => $user->id]) }}">お気に入り</a></td>
 
-    <!-- 条件分岐で相手の状態を -->
+    @if(in_array($user->id,(array)$match_lists))
     <td><button>マッチング中</button></td>
+    @elseif(in_array($user->id,(array)$request_lists))
     <td><button>リクエスト中</button></td>
+    @elseif(in_array($user->id,(array)$requested_lists))
     <td><button>リクエスト受け</button></td>
+    @else
+    <td><button>フォローする</button></td>
+    @endif
   </tr>
 </div>
-
 @else
 <p>検索結果はありません</p>
 @endif
@@ -35,3 +39,4 @@
 
 
 @endsection
+

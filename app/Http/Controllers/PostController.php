@@ -10,18 +10,77 @@ use Auth;
 class PostController extends Controller
 {
     //トーク画面
-    public function talk(){
+    public function post(){
 
-        return view('/users/talk');
+        return view('/users/post');
     }
 
-    //トーク詳細画面
+    //投稿
     public function create(Request $request){
 
         //$user_id = Auth::id();
-        $user_id = User::find(1);
+        $user_id = 1;
         $post = $request->input('newPost');
+        $post_images = $request->file('image_path');
 
-        return view('/users/talk_detail');
+        
+
+        if(isset($post) && isset($post_images)){
+            $test = $request->file('image_path')->getClientOriginalName(). '.' .$request->file('image_path')->getClientOriginalExtension();
+            $request->file('image_path')->storeAs('images',$test,'public_uploads');
+
+            Post::insert([
+                'user_id'=>$user_id,
+                'post'=>$post,
+            ]);
+
+            $image = new Post;
+            $image->user_id=$user_id;
+            $image->image_path=$test;
+            $image->save();
+        }
+        elseif(isset($post) && !isset($post_images)){
+            Post::insert([
+                'user_id'=>$user_id,
+                'post'=>$post,
+            ]);
+        }
+        elseif(!isset($post) && isset($post_images)){
+            $test = $request->file('image_path')->getClientOriginalName();
+            $request->file('image_path')->storeAs('images',$test,'public_uploads');
+
+            $image = new Post;
+            $image->user_id=$user_id;
+            $image->image_path=$test;
+            $image->save();
+        }
+        else{
+
+        }
+
+        return back();
+    }
+    
+    //投稿一覧
+    public function index(){
+
+        $user_id = 1;
+        $id = User::find(1)->id;
+        
+
+        $posts = Post::where('user_id',$user_id)
+               ->orderBy('created_at','desc')
+               ->get();
+
+
+        $user = \DB::table('users')
+              ->where('posts.post',$id)
+              ->select('users.*')
+              ->leftjoin('posts','users.id','=','posts.post')
+              ->get();
+        
+        
+
+        return view('/users/post',compact('user_id','posts','user'));
     }
 }

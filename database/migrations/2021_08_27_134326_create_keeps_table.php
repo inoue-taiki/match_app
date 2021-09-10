@@ -16,6 +16,7 @@ class CreateKeepsTable extends Migration
         Schema::create('keeps', function (Blueprint $table) {
             $table->bigIncrements('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('other_id');
             $table->timestamps();
         });
     }

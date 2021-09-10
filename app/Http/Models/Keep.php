@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Keep extends Model
 {
     // テーブル名参照
-    protected $table = 'keep';
+    protected $table = 'keeps';
 
     //リレーション
     public function users()
