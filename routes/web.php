@@ -57,7 +57,7 @@ Route::post('/follows/{id}/unrequest', 'FollowController@unrequest')->name('user
 //リクエスト受けてるユーザー画面
 Route::get('/follows/follower', 'FollowController@follower')->name('follow.follower');
 //リクエスト許可
-Route::post('/follows/{id}/follower', 'FollowController@add')->name('user.add');
+Route::post('/follows/{id}/match', 'FollowController@accept')->name('user.add');
 //リクエスト拒否
 Route::post('/follows/{id}/follower', 'FollowController@decline')->name('user.decline');
 

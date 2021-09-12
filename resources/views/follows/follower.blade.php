@@ -11,7 +11,12 @@
       <td><a href="{{ route('user.other') }}">ユーザー画像</a></td>
       <td>{{ $requested_list->name }}</td>
       <td><button><a href="">トークする</a></button></td>
-      
+      <td>
+        <form method="POST" action="{{ route('user.add', $requested_list->id)}}">
+            @csrf
+            <input type="submit" value="リクエストを受ける">
+        </form>
+      </td>
       <td>
         <form method="POST" action="{{ route('user.decline', $requested_list->id)}}">
           @csrf

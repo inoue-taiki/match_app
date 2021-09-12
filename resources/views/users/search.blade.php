@@ -28,7 +28,7 @@
     @elseif(in_array($user->id,(array)$requested_lists))
     <td><button>リクエスト受け</button></td>
     @else
-    <td><button>フォローする</button></td>
+    <td><td><button>リクエストする</button></td></td>
     @endif
   </tr>
 </div>

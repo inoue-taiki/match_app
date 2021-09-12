@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
             $table->integer('user_id');
-//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//          $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('post',500);
             $table->timestamps();
         });

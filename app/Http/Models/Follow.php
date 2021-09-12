@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Follow extends Model
 {
     //  テーブル名参照
-    protected $table = 'follow';
+    protected $table = 'follows';
 
      //リレーション
      public function users()

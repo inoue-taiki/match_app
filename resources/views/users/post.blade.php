@@ -9,11 +9,11 @@
   <tr>
     <td><p>{{ $post->created_at }}</p></td>
     <td><p>{{ $post->post }}</p></td>
-    <td><img src="{{ asset('/images'.$post->image_path) }}"></td>
+    <td><img src="{{asset('/images/'.$post->image_path)}}"></td>
   </tr>
   @endforeach
-</div>
 
+</div>
 
 <!-- 送信フォーム -->
 <div class="form-table">

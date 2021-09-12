@@ -180,6 +180,13 @@ class UserController extends Controller
         return view('/users/search',compact('users','match_lists','id','follower_user','following_user','request_lists','requested_lists'));
       }
   
+
+      public function request($id){
+        
+        
+
+          return redirect('/users/search');
+      }
   
       //相手ユーザー画面
       public function other($other_id){

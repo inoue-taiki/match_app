@@ -168,36 +168,26 @@ class FollowController extends Controller
                         ->select('users.*')
                         ->leftjoin('follows','follows.follow','users.id')
                         ->get();
-                        
+
         
         return view('/follows/follower',compact('user_id','id','follower','follower_user','following','following_user','requested_lists'));
     }
 
     //リクエスト許可
-    public function add($id){
+    public function accept(Request $request){
 
         //$user_id = Auth::id()->user_id;
-        $user_id = User::find(1)->user_id;
+        $user_id = 1;
+        $id = $request->id;
 
-         //フォローされている人
-         $follower = \DB::table('follows')
-         ->leftjoin('users','follows.follow','=','users.id')
-         ->where('follow',$id)
-         ->get();
-        //フォローされている人のID
-        $follower_user = []; 
-        //フォローされている人のIDを配列化
-        foreach ($follower as $follower_id){
-        $follower_user[] = $follower_id->follow;
-        }
-
-        $approve = new Forrow;
-        $approve->follow=$user_id;
-        $approve->follower=$follower_user;
-        $approve->save();
+        Follow::insert([
+            'follow' => $user_id,
+            'follower' => $id
+        ]);
         
-        return redirect('follow.match',compact('user_id','follower_user','approve'));
+        return redirect()->route('follow.match');
     }
+
     //リクエスト拒否
     public function decline($id){
 
