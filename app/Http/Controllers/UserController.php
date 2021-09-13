@@ -57,6 +57,7 @@ class UserController extends Controller
                      ->whereIn('follows.follower',$follower_user)
                      ->select('users.*')
                      ->leftjoin('follows','follows.follower','users.id')
+                     ->groupBy('follower')
                      ->get();
 
     $requested_lists = \DB::table('users')
@@ -71,6 +72,7 @@ class UserController extends Controller
                        ->whereNotIn('follows.follower',$following_user)
                        ->select('users.*')
                        ->leftjoin('follows','follows.follower','users.id')
+                       ->groupBy('follower')
                        ->get();
 
         return view('/users/profile',compact('user','user_id','id','follower','follower_user','match_lists','requested_lists','request_lists'));
@@ -189,10 +191,10 @@ class UserController extends Controller
       }
   
       //相手ユーザー画面
-      public function other($other_id){
+      public function other($id){
         $user_id = User::find(1);
-        $other_id = User::whereNotIn('id', $user_id)->get();//指定ユーザー以外を指定
+        $user = User::find($id);
     
-        return view('/users/other');
+        return view('/users/other',compact('user'));
       }
 }

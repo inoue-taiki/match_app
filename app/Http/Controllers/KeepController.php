@@ -25,6 +25,7 @@ class KeepController extends Controller
          return redirect()->route('user.keep');
      }
 
+    //お気に入り画面
     public function keep(){
         $user_id = 1;
         $id = User::find(1)->id;
@@ -32,7 +33,6 @@ class KeepController extends Controller
         $keeps = Keep::where('user_id',$user_id)
                ->leftjoin('users','users.id','=','keeps.other_id')
                ->groupBy('other_id')
-               ->select('other_id')
                ->get();
 
         $follower = \DB::table('follows')
@@ -59,21 +59,26 @@ class KeepController extends Controller
                     ->whereIn('follows.follower',$follower_user)
                     ->select('users.*')
                     ->leftjoin('follows','follows.follower','users.id')
-                    ->first();
+                    ->groupBy('follower')
+                    ->get();
+                   
     
         $request_lists = \DB::table('users')
                         ->where('follows.follow',$id)
                         ->whereNotIn('follows.follower',$following_user)
                         ->select('users.*')
                         ->leftjoin('follows','follows.follower','users.id')
-                        ->first();
+                        ->groupBy('follower')
+                        ->get();
+                        
 
         $requested_lists = \DB::table('users')
                         ->where('follows.follower',$id)
                         ->whereNotIn('follows.follow',$following_user)
                         ->select('users.*')
                         ->leftjoin('follows','follows.follow','users.id')
-                        ->first();
+                        ->get();
+
 
         return view('/users/keep',compact('user_id','id','keeps','requested_lists','request_lists','match_lists','following_user','follower_user'));
     }

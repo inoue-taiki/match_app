@@ -49,6 +49,7 @@ class FollowController extends Controller
                      ->whereIn('follows.follower',$follower_user)
                      ->select('users.*')
                      ->leftjoin('follows','follows.follower','users.id')
+                     ->groupBy('follower')
                      ->get();
         
 
@@ -94,6 +95,7 @@ class FollowController extends Controller
                          ->whereNotIn('follows.follower',$following_user)
                          ->select('users.*')
                          ->leftjoin('follows','follows.follower','users.id')
+                         ->groupBy('follower')
                          ->get();
 
 

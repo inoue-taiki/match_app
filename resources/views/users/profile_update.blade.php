@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="/profile" method="post" enctype="multipart/form-data">
+<form action="users/profile" method="post" enctype="multipart/form-data">
 <div class="profile_update">
   <tr>
     <!--既存の画像-->

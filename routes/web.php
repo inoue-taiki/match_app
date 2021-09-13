@@ -21,7 +21,9 @@ Route::get('top', 'UserController@index')->name('top.index');
 Route::get('/users/profile', 'UserController@profile')->name('user.profile');
 //プロフィール編集
 Route::get('/users/profile_update', 'UserController@update')->name('user.profile_update');
+Route::post('/users/profile_update', 'UserController@update')->name('user.profile_update');
 Route::get('/file_upload','UserController@update')->name('user.profile_update');
+Route::post('/file_upload','UserController@update')->name('user.profile_update');
 
 //投稿一覧画面
 Route::post('/users/post', 'PostController@create')->name('user.post');
@@ -38,7 +40,7 @@ Route::post('/users/{id}/request', 'UserController@request')->name('user.request
 Route::get('/users/{id}/request', 'UserController@request')->name('user.request');
 
 //相手ユーザー画面
-Route::get('/users/other', 'UserController@other')->name('user.other');
+Route::get('/users/{id}/other', 'UserController@other')->name('user.other');
 
 //お気に入りに追加
 Route::post('/users/{id}/add', 'KeepController@add')->name('keep.add');

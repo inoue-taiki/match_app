@@ -17,9 +17,9 @@
 @if(isset($user))
 <div class="search_table">
   <tr>
-    <td>{{ $user->image_path }}</td>
-    <td><a href="{{ route('user.other') }}">{{ $user->name}}</a></td>
-    <td><a href="{{ route('keep.add', ['id' => $user->id]) }}">お気に入り</a></td>
+    <td><img src="{{ $user->image_path }}"></td>
+    <td><a href="{{ route('user.other',['id' => $user->id]) }}">{{ $user->name}}</a></td>
+    <td><a href="{{ route('keep.add', ['id' => $user->id]) }}">♡</a></td>
 
     @if(in_array($user->id,(array)$match_lists))
     <td><button>マッチング中</button></td>
