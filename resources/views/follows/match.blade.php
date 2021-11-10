@@ -12,7 +12,7 @@
       <td>{{ $match_list->name }}</td>
       <td>{{ $match_list->age }}</td>
       <td>{{ $match_list->bio }}</td>
-      <td><button><a href="">トークする</a></button></td>
+      <td><button><a href="{{ route('user.talk',$match_list->id)}}">トークする</a></button></td>
       <td>
         <form method="POST" action="{{ route('user.unfollow', $match_list->id)}}">
           @csrf

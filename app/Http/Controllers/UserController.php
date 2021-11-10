@@ -27,6 +27,7 @@ class UserController extends Controller
     $user_id = User::find(1)->user_id;
     $id = User::find(1)->id;
 
+
     //フォローされている人
     $follower = \DB::table('follows')
     ->leftjoin('users','follows.follower','=','users.id')
@@ -55,7 +56,6 @@ class UserController extends Controller
     $match_lists = \DB::table('users')
                      ->where('follows.follow',$id)
                      ->whereIn('follows.follower',$follower_user)
-                     ->select('users.*')
                      ->leftjoin('follows','follows.follower','users.id')
                      ->groupBy('follower')
                      ->get();
@@ -181,20 +181,26 @@ class UserController extends Controller
   
         return view('/users/search',compact('users','match_lists','id','follower_user','following_user','request_lists','requested_lists'));
       }
-  
 
-      public function request($id){
-        
-        
-
-          return redirect('/users/search');
-      }
   
       //相手ユーザー画面
       public function other($id){
-        $user_id = User::find(1);
-        $user = User::find($id);
+
+        $name = User::find($id);
+        
     
-        return view('/users/other',compact('user'));
+        return view('/users/other',compact('name'));
       }
+
+
+      //相手ユーザーとトーク
+      public function talk($id){
+
+        $name = User::find($id);
+
+          return view('/users/talk',compact('name'));
+      }
+
+
+      
 }

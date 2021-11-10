@@ -1,0 +1,15 @@
+/*--   モーダル --*/ 
+.modal{
+  display: none;
+}
+
+/*-- モーダル中身 --*/ 
+.modal__content{
+  width: 50%;
+  height: 400px;
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  border: 3px solid #000;
+  
+}

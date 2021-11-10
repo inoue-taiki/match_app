@@ -25,6 +25,16 @@ class KeepController extends Controller
          return redirect()->route('user.keep');
      }
 
+     //削除する
+     public function delete($id){
+
+        \DB::table('keeps')
+        ->where('other_id',$id)
+        ->delete();
+
+        return back();
+     }
+
     //お気に入り画面
     public function keep(){
         $user_id = 1;
@@ -34,7 +44,7 @@ class KeepController extends Controller
                ->leftjoin('users','users.id','=','keeps.other_id')
                ->groupBy('other_id')
                ->get();
-
+      
         $follower = \DB::table('follows')
                   ->leftjoin('users','follows.follower','=','users.id')
                   ->where('follower',$id)
@@ -79,7 +89,8 @@ class KeepController extends Controller
                         ->leftjoin('follows','follows.follow','users.id')
                         ->get();
 
-
         return view('/users/keep',compact('user_id','id','keeps','requested_lists','request_lists','match_lists','following_user','follower_user'));
     }
+
+
 }

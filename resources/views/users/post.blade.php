@@ -5,11 +5,12 @@
 
 <div class="post_contents">
   <p>投稿一覧</p>
-  @foreach($posts as $post)
+  @foreach($users as $user)
   <tr>
-    <td><p>{{ $post->created_at }}</p></td>
-    <td><p>{{ $post->post }}</p></td>
-    <td><img src="{{asset('/images/'.$post->image_path)}}"></td>
+    <td><p>{{ $user_name }}</p></td>
+    <td><p>{{ $user->created_at }}</p></td>
+    <td><p>{{ $user->post }}</p></td>
+    <td><img src="{{asset('/images/'.$user->image_path)}}"></td>
   </tr>
   @endforeach
 
@@ -21,6 +22,7 @@
     @csrf
     <input type="text" name="newPost">
     <input type="file" name="image_path">
+    <br>
     <button type="submit">送信</button>
   </form>
 </div>

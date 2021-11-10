@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="users/profile" method="post" enctype="multipart/form-data">
+<form action="{{ route('user.profile')}}" method="POST" enctype="multipart/form-data">
+@csrf
 <div class="profile_update">
   <tr>
     <!--既存の画像-->
@@ -19,5 +20,5 @@
 
   <button class="w-100 btn btn-lg btn-primary" type="submit">更新</button>
 </div>
-@endsection
 </form>
+@endsection

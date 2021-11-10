@@ -14,8 +14,8 @@
   <tr>
     <td><img src="{{ $user->image_path }}"></td>
     <td><p>ユーザー名：{{ $user->name }}</p></td>
-    <td><p>性別:{{ $user->gender }}</p></td>
     <td><p>年齢:{{ $user->age }}</p></td>
+    <td><p>性別:{{ $user->gender }}性</p></td>
     <td><p>メールアドレス:{{ $user->email}}</td>
     <td><p>紹介文：{{ $user->bio }}</p></td>
   </tr>

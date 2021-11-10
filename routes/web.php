@@ -17,20 +17,18 @@ Auth::routes();
 //トップページ
 Route::get('top', 'UserController@index')->name('top.index');
 
+
 //プロフィール画面
 Route::get('/users/profile', 'UserController@profile')->name('user.profile');
 //プロフィール編集
-Route::get('/users/profile_update', 'UserController@update')->name('user.profile_update');
-Route::post('/users/profile_update', 'UserController@update')->name('user.profile_update');
+Route::get('/users/{id}/profile_update', 'UserController@update')->name('user.profile_update');
+Route::post('/users/{id}/profile_update', 'UserController@update')->name('user.profile_update');
 Route::get('/file_upload','UserController@update')->name('user.profile_update');
 Route::post('/file_upload','UserController@update')->name('user.profile_update');
 
 //投稿一覧画面
 Route::post('/users/post', 'PostController@create')->name('user.post');
 Route::get('/users/post', 'PostController@index')->name('user.post');
-//投稿詳細
-//Route::post('/users/talk_detail', 'PostController@create')->name('talk.detail');
-//Route::get('/users/talk_detail','PostController@index');
 
 //ユーザー検索画面
 Route::get('/users/search', 'UserController@search')->name('user.search');
@@ -40,11 +38,20 @@ Route::post('/users/{id}/request', 'UserController@request')->name('user.request
 Route::get('/users/{id}/request', 'UserController@request')->name('user.request');
 
 //相手ユーザー画面
-Route::get('/users/{id}/other', 'UserController@other')->name('user.other');
+Route::get('/users/other', 'UserController@other')->name('user.other');
+//相手とのトーク
+Route::post('/users/{id}/talk','UserController@talk')->name('user.talk');
+Route::get('/users/{id}/talk','UserController@talk')->name('user.talk');
+
+Route::get('/users/talk', 'PostController@talkcreate')->name('talk.post');
+Route::post('/users/talk', 'PostController@talkcreate')->name('talk.post');
+
 
 //お気に入りに追加
 Route::post('/users/{id}/add', 'KeepController@add')->name('keep.add');
 Route::get('/users/{id}/add', 'KeepController@add')->name('keep.add');
+Route::post('/users/{id}/delete', 'KeepController@delete')->name('keep.delete');
+
 //お気に入り画面
 Route::get('/users/keep', 'KeepController@keep')->name('user.keep');
 
@@ -65,3 +72,16 @@ Route::post('/follows/{id}/follower', 'FollowController@decline')->name('user.de
 
 //フォローする
 Route::post('/follows/{id}/follow', 'FollowController@follow')->name('user.follow');
+
+//スケジュール
+Route::get('/users/schedule', 'ScheduleController@schedule')->name('user.schedule');
+Route::post('/users/schedule', 'ScheduleController@schedule_add')->name('user.schedule');
+Route::post('/users/schedule', 'ScheduleController@schedule_edit')->name('user.schedule');
+
+
+//練習用
+Route::get('/follows/practice', 'FollowController@practice')->name('follow.practice');
+Route::post('/follows/practice', 'FollowController@practice')->name('follow.practice');
+
+//フォローする
+Route::post('/follows/{id}/practice', 'FollowController@add')->name('follow.add');

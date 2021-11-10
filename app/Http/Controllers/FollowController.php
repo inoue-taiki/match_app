@@ -205,4 +205,39 @@ class FollowController extends Controller
 
         return back();
     }
+
+    public function practice(){
+        $user_id = 1; //ログインユーザーのID
+
+        $user_lists =  \DB::table('users')->get();
+
+        $id = User::find(1)->id;
+
+        //フォローしている人
+        $following = \DB::table('follows')
+                   ->where('follower',$id)
+                   ->get();
+        //フォローしている人のID
+        $following_user = []; 
+        //フォローしてる人のIDを配列化
+        foreach ($following as $following_id){
+            $following_user[] = $following_id->follow;
+        } 
+
+        return view('/follows/practice',compact('user_lists','following','following_user'));
+    }
+
+    public function add(Request $request){
+        $user_id = 1; //ログインユーザーのID
+        $id = $request->id;
+
+        Follow::insert([
+            'follow' => $user_id,
+            'follower' => $id
+        ]);
+
+        return back();
+    }
+
+    
 }
